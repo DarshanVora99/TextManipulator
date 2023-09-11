@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.blank{
+  color: rgb(7, 143, 143);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
