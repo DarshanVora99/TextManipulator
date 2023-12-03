@@ -47,10 +47,15 @@ export default function TextForm(props) {
   return (
 
     <>
-    <div className="container my-4">
+    <div className="container my-4" style={{ color:props.mode === 'light'? 'black' : 'white'}} >
         <h2>{props.heading}</h2>
         <div className="mb-3">
-        <textarea className="form-control" id="myBox" value = {text} onChange={handleOnChange} rows="8"></textarea>
+        <textarea className='form-control' id="myBox" value = {text} onChange={handleOnChange} rows="8"
+        style={{
+            backgroundColor: props.mode === 'light' ? 'white' : 'grey',
+            color: props.mode === 'light' ? 'black' : 'white'
+          }}
+        ></textarea>
         </div>
 
         <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Uppercase</button>
@@ -60,9 +65,9 @@ export default function TextForm(props) {
         <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear</button>
 
     </div>
-
-    <div className="container my-4">
-        <h2>Your text summary </h2>
+v
+    <div className="container my-4" style={{ color:props.mode === 'light'? 'black' : 'white'}}>
+        <h2 className={`${(props.mode) === 'light'? 'grey' : 'light'}`}>Your text summary </h2>
         <p> {text.length == 0 ? 0:text.split(" ").length} words {text.length} characters</p>
         <p>{text.length == 0 ? 0:(text.split(" ").length)*0.08} min required to read above text</p>
 
