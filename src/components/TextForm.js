@@ -3,8 +3,7 @@ import React , {useState} from 'react'
 
 export default function TextForm(props) {
     const [text, setText] = useState("");
-    // text = "Creator Darshan Vora"  will not work 
-    // setText("Creator Darshan Vora") // correct way to change the state
+   
     
     const handleUpClick =()=>{
         // console.log("Handle upper case button was clicked " + text)
@@ -42,18 +41,23 @@ export default function TextForm(props) {
        
         
     }
+    const speak = () => {
+        let msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        window.speechSynthesis.speak(msg);
+      }
 
     
   return (
 
     <>
-    <div className="container my-4" style={{ color:props.mode === 'light'? 'black' : 'white'}} >
-        <h2>{props.heading}</h2>
+    <div className="container my-4" style={{ color:props.mode === 'light'? 'light' : '#121212'}} >
+        
         <div className="mb-3">
         <textarea className='form-control' id="myBox" value = {text} onChange={handleOnChange} rows="8"
         style={{
-            backgroundColor: props.mode === 'light' ? 'white' : 'grey',
-            color: props.mode === 'light' ? 'black' : 'white'
+            backgroundColor: props.mode === 'light' ? 'white' : '#121212',
+            color: props.mode === 'light' ? '#121212' : 'white'
           }}
         ></textarea>
         </div>
@@ -64,12 +68,16 @@ export default function TextForm(props) {
         <button className="btn btn-primary mx-2" onClick={handleCopyClick}>Copy Text</button>
         <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear</button>
 
+        
+
+<button type="submit" onClick={speak} className="btn btn-primary mx-2 my-2">Speak</button>
+
     </div>
-v
-    <div className="container my-4" style={{ color:props.mode === 'light'? 'black' : 'white'}}>
-        <h2 className={`${(props.mode) === 'light'? 'grey' : 'light'}`}>Your text summary </h2>
-        <p> {text.length == 0 ? 0:text.split(" ").length} words {text.length} characters</p>
-        <p>{text.length == 0 ? 0:(text.split(" ").length)*0.08} min required to read above text</p>
+
+    <div className="container my-4" style={{ color:props.mode === 'light'? '#121212' : 'white'}}>
+        <h2 className={`${(props.mode) === 'light'? '#121212' : 'light'}`}>Your text summary </h2>
+        <p> {text.length === 0 ? 0:text.split(" ").length} words {text.length} characters</p>
+        <p>{text.length === 0 ? 0:(text.split(" ").length)*0.08} min required to read above text</p>
 
         <h2>Preview</h2>
         <p>{text}</p>
